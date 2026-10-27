@@ -3,6 +3,8 @@
 [![CI](https://github.com/VenkataSuryaKamal/llm-eval-harness/actions/workflows/ci.yml/badge.svg)](https://github.com/VenkataSuryaKamal/llm-eval-harness/actions/workflows/ci.yml)
 [![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/VenkataSuryaKamal/llm-eval-harness)
 
+**Live demo:** https://llm-eval-harness-jhyr.onrender.com (free hosting, so the first visit after a quiet spell can take up to a minute to wake up)
+
 **Tech:** Next.js 16 · React 19 · TypeScript · Python · FastAPI · SQLAlchemy · Anthropic and OpenAI SDKs · Docker · GitHub Actions
 
 > Paste a prompt, upload test inputs, pick models, press **Run**.
@@ -697,7 +699,7 @@ The repo includes a root `Dockerfile` and a `render.yaml` Blueprint. Together th
 Steps:
 1. Click the **Deploy to Render** button at the top of this README, and sign in to Render with GitHub.
 2. Render asks for `GEMINI_API_KEY`, `GROQ_API_KEY` and `OPENROUTER_API_KEY`. Paste your free keys. Any of them can be left empty, and the offline demo models always work.
-3. Click **Apply**. The first build takes about 5 to 10 minutes. Your site will be at `https://llm-eval-harness.onrender.com`, or a similar name if that one is taken.
+3. Click **Apply**. The first build takes about 5 to 10 minutes. Render gives the site an address like `https://llm-eval-harness-xxxx.onrender.com`.
 
 Things to know about the free plan:
 - **It sleeps after 15 minutes without visitors**, so the next visit takes up to a minute to wake it.
