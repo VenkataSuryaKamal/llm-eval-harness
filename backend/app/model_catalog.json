@@ -1,0 +1,139 @@
+{
+  "_comment": "Prices are USD per 1 million tokens at paid rates; free_tier models cost $0 within the provider's free quota. Verify prices on each provider's pricing page before trusting cost numbers; edit freely. Add any model a provider offers by adding a line here.",
+  "models": [
+    {
+      "id": "claude-opus-5-5",
+      "provider": "anthropic",
+      "label": "Claude Opus 5.5",
+      "input_per_mtok": 4.0,
+      "output_per_mtok": 20.0,
+      "server_fallback": true
+    },
+    {
+      "id": "claude-sonnet-5-5",
+      "provider": "anthropic",
+      "label": "Claude Sonnet 5.5",
+      "input_per_mtok": 2.0,
+      "output_per_mtok": 10.0,
+      "server_fallback": true
+    },
+    {
+      "id": "claude-haiku-5-5",
+      "provider": "anthropic",
+      "label": "Claude Haiku 5.5",
+      "input_per_mtok": 0.1,
+      "output_per_mtok": 0.5,
+      "server_fallback": false
+    },
+    {
+      "id": "claude-fable-5-1",
+      "provider": "anthropic",
+      "label": "Claude Fable 5.1",
+      "input_per_mtok": 10.0,
+      "output_per_mtok": 50.0,
+      "server_fallback": true
+    },
+    {
+      "id": "gpt-4.1",
+      "provider": "openai",
+      "label": "GPT-4.1",
+      "input_per_mtok": 2.0,
+      "output_per_mtok": 8.0
+    },
+    {
+      "id": "gpt-4.1-mini",
+      "provider": "openai",
+      "label": "GPT-4.1 mini",
+      "input_per_mtok": 0.4,
+      "output_per_mtok": 1.6
+    },
+    {
+      "id": "gpt-4o-mini",
+      "provider": "openai",
+      "label": "GPT-4o mini",
+      "input_per_mtok": 0.15,
+      "output_per_mtok": 0.6
+    },
+    {
+      "id": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "label": "Gemini 3.5 Flash-Lite (free tier)",
+      "input_per_mtok": 0,
+      "output_per_mtok": 0,
+      "free_tier": true
+    },
+    {
+      "id": "gemini-3.8-flash",
+      "provider": "gemini",
+      "label": "Gemini 3.8 Flash (free tier)",
+      "input_per_mtok": 0,
+      "output_per_mtok": 0,
+      "free_tier": true
+    },
+    {
+      "id": "openai/gpt-oss-120b",
+      "provider": "groq",
+      "label": "GPT-OSS 120B on Groq (free tier)",
+      "input_per_mtok": 0,
+      "output_per_mtok": 0,
+      "free_tier": true
+    },
+    {
+      "id": "openai/gpt-oss-20b",
+      "provider": "groq",
+      "label": "GPT-OSS 20B on Groq (free tier)",
+      "input_per_mtok": 0,
+      "output_per_mtok": 0,
+      "free_tier": true
+    },
+    {
+      "id": "google/gemma-4-31b-it:free",
+      "provider": "openrouter",
+      "label": "Gemma 4 31B via OpenRouter (free)",
+      "input_per_mtok": 0,
+      "output_per_mtok": 0,
+      "free_tier": true,
+      "structured_output": false
+    },
+    {
+      "id": "llama3.2",
+      "provider": "ollama",
+      "label": "Llama 3.2 3B, local Ollama (free)",
+      "input_per_mtok": 0,
+      "output_per_mtok": 0,
+      "free_tier": true,
+      "structured_output": false
+    },
+    {
+      "id": "qwen3:8b",
+      "provider": "ollama",
+      "label": "Qwen3 8B, local Ollama (free)",
+      "input_per_mtok": 0,
+      "output_per_mtok": 0,
+      "free_tier": true,
+      "structured_output": false
+    },
+    {
+      "id": "mock-good",
+      "provider": "mock",
+      "label": "Mock: careful model",
+      "input_per_mtok": 0.5,
+      "output_per_mtok": 1.5
+    },
+    {
+      "id": "mock-sloppy",
+      "provider": "mock",
+      "label": "Mock: sloppy model",
+      "input_per_mtok": 0.05,
+      "output_per_mtok": 0.1
+    },
+    {
+      "id": "mock-judge",
+      "provider": "mock",
+      "label": "Mock: offline judge",
+      "input_per_mtok": 0.0,
+      "output_per_mtok": 0.0,
+      "judge_only": true
+    }
+  ]
+}

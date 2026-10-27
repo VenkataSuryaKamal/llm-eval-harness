@@ -1,0 +1,43 @@
+# Render Blueprint: one free web service running the whole app.
+# Deploy: https://render.com/deploy?repo=https://github.com/VenkataSuryaKamal/llm-eval-harness
+services:
+  - type: web
+    name: llm-eval-harness
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /
+    autoDeploy: true
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_API_KEY            # shared secret between the site and the private API
+        generateValue: true
+      - key: DEMO_MODE              # shows a "public demo" notice and keeps limits small
+        value: "true"
+      # Free AI keys: Render asks for these when you create the Blueprint.
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
+      - key: OPENROUTER_API_KEY
+        sync: false
+      - key: JUDGE_MODEL
+        value: openai/gpt-oss-120b
+      # Tight limits so strangers can't drain your free quota.
+      - key: MAX_CASES_PER_DATASET
+        value: "30"
+      - key: MAX_MODELS_PER_RUN
+        value: "3"
+      - key: MAX_CALLS_PER_RUN
+        value: "90"
+      - key: MAX_UPLOAD_BYTES
+        value: "200000"
+      - key: MAX_OUTPUT_TOKENS
+        value: "1024"
+      - key: RATE_LIMIT_PER_MINUTE
+        value: "4"
+      - key: PLAYGROUND_RATE_LIMIT_PER_MINUTE
+        value: "20"
+      - key: FREE_TIER_CONCURRENCY
+        value: "2"

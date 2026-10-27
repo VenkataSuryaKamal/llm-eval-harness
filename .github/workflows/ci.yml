@@ -1,0 +1,46 @@
+name: CI
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    defaults: { run: { working-directory: backend } }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.13" }
+      - run: pip install -r requirements-dev.txt bandit
+      - run: pytest -q
+      - run: pip-audit -r requirements.txt
+      - run: bandit -q -r app
+  docker:
+    # Builds the one-container deploy image and smoke-tests it like Render would.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker build -t eval-harness .
+      - name: Smoke test
+        run: |
+          docker run -d --name app -p 10000:10000 eval-harness
+          for i in $(seq 1 45); do curl -sf localhost:10000/ >/dev/null && break; sleep 2; done
+          curl -sf localhost:10000/ | grep -q "LLM Eval Harness"
+          curl -sf localhost:10000/api/models | grep -q mock-good
+          curl -sf -X POST localhost:10000/api/playground -H 'content-type: application/json' \
+            -d '{"prompt":"Summarize: {{input}}","input":"My order arrived broken.","models":["mock-good"]}' | grep -q '"score"'
+          # The API must not be reachable from outside the container.
+          ! curl -sf --max-time 3 localhost:8000/health
+          echo "smoke test passed"
+      - if: always()
+        run: docker logs app || true
+  frontend:
+    runs-on: ubuntu-latest
+    defaults: { run: { working-directory: frontend } }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "22" }
+      - run: npm ci --ignore-scripts
+      - run: npm audit --audit-level=high
+      - run: npm run typecheck
+      - run: npm run build

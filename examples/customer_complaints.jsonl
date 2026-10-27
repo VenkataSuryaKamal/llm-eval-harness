@@ -1,0 +1,3 @@
+{"input": "The blender I ordered is missing its lid.", "expected": "The blender arrived without its lid.", "product": "blender"}
+{"input": "I was promised a callback yesterday and never got one.", "expected": "Customer did not receive a promised callback.", "product": "support"}
+{"input": "Checkout keeps failing with error 502 when I pay by card.", "expected": "Card checkout fails with a 502 error.", "product": "website"}

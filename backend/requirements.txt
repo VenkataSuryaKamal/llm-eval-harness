@@ -1,0 +1,10 @@
+# Pinned exact versions: reproducible installs and protection from a
+# compromised future release being pulled in silently. Audit with: pip-audit -r requirements.txt
+fastapi==0.162.0
+uvicorn[standard]==0.54.0
+sqlalchemy==2.1.6
+pydantic==2.14.1
+pydantic-settings==2.16.1
+python-multipart==0.0.32
+anthropic==2.3.0
+openai==3.39.0

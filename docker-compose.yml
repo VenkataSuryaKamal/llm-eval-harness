@@ -1,0 +1,32 @@
+# docker compose up --build    then open http://localhost:3000
+# Only the frontend is published. The backend is reachable only inside the
+# compose network, so the browser can never talk to it directly.
+services:
+  backend:
+    build: ./backend
+    env_file: ./backend/.env
+    environment:
+      DATABASE_URL: sqlite:////app/data/eval_harness.db
+      APP_ENV: production
+    volumes:
+      - eval-data:/app/data
+    restart: unless-stopped
+    read_only: true
+    tmpfs: [/tmp]
+    security_opt: ["no-new-privileges:true"]
+
+  frontend:
+    build: ./frontend
+    environment:
+      BACKEND_URL: http://backend:8000
+      BACKEND_API_KEY: ${APP_API_KEY:?Set APP_API_KEY in a top-level .env file (same value as backend/.env)}
+    ports:
+      - "127.0.0.1:3000:3000"
+    depends_on: [backend]
+    restart: unless-stopped
+    read_only: true
+    tmpfs: [/tmp]
+    security_opt: ["no-new-privileges:true"]
+
+volumes:
+  eval-data:
